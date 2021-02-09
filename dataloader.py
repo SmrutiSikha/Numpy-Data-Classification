@@ -23,17 +23,17 @@ print(y_test.shape)
 
 # print(X_train[0],Y_train[0])
 
-X_train = np.expand_dims(X_train,axis=0)
-Y_train = np.expand_dims(Y_train,axis=0)
+X_train = np.expand_dims(X_train,axis=1)
+Y_train = np.expand_dims(Y_train,axis=1)
 
 print(X_train.shape)
 print(Y_train.shape)
 
-# X_train = torch.stack([torch.from_numpy(np.array(i.astype(np.float32))) for i in X_train])
-# Y_train = torch.stack([torch.from_numpy(np.array(i.astype(np.float32))) for i in Y_train])
+X_train = torch.stack([torch.from_numpy(np.array(i.astype(np.float32))) for i in X_train])
+Y_train = torch.stack([torch.from_numpy(np.array(i.astype(np.float32))) for i in Y_train])
 
-X_train = torch.from_numpy(X_train.astype(np.float32))
-Y_train =torch.from_numpy(Y_train.astype(np.float32))
+# X_train = torch.from_numpy(X_train.astype(np.float32))
+# Y_train =torch.from_numpy(Y_train.astype(np.float32))
 
 print(X_train.shape)
 print(Y_train.shape)
@@ -41,6 +41,8 @@ print(Y_train.shape)
 train_dataset = torch.utils.data.TensorDataset(X_train, Y_train)
 train_loader = torch.utils.data.DataLoader(train_dataset, batch_size=64)
 
+x,y = next(iter(train_loader))
+print(x.shape,y.shape)
 
 
 
